@@ -1,0 +1,9 @@
+{
+  "label": "Electron Framework Related",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Documentation related to the Electron framework used in SmartAdmin application."
+    ,
+  }
+}
