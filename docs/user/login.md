@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
-title: Login
+title: Login System
 description: Detailed design of the login process in SmartAdmin application
 ---
 
 # User Login System
 
 <div style={{textAlign: 'center'}}>
-  <img src="../assets/loginpage.png" alt="login page" style={{width: '400px', maxWidth: '100%'}} />
+  <img src="https://github.com/uparcelchengz/smartadmin-docs/blob/main/docs/assets/loginpage.png?raw=true" alt="login page" style={{width: '300px', maxWidth: '100%'}} />
 </div>
 
 ## Core Components
