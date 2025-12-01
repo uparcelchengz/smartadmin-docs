@@ -10,6 +10,8 @@ description: Detailed design of the Electron main process in SmartAdmin applicat
 
 The `main.js` file serves as the entry point for the SmartAdmin Electron application, orchestrating the entire application lifecycle, window management, and core system initialization.
 
+---
+
 ## Architecture Components
 
 ### Application Mode
@@ -333,6 +335,8 @@ log.app("🐘 Testing PostgreSQL connection...");
 - User-friendly error messages
 - Development vs production logging levels
 
+---
+
 ## Dependencies
 
 ### Core Electron
@@ -350,6 +354,8 @@ log.app("🐘 Testing PostgreSQL connection...");
 - `./src/modules/action-handler.js`: Browser automation
 - `./src/modules/auto-updater.js`: Update management
 - `./src/modules/ably-handler.js`: Real-time messaging
+
+---
 
 ## Usage Patterns
 
@@ -376,4 +382,4 @@ if (result.status) {
 }
 ```
 
-This documentation provides a comprehensive overview of the main process architecture, initialization flow, and key components that drive the SmartAdmin application.
+---

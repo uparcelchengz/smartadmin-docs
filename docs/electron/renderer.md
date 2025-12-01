@@ -10,6 +10,8 @@ description: Detailed design of the Electron renderer process in SmartAdmin appl
 
 The renderer processes in SmartAdmin handle all user interface components and interactions. Built on Electron's renderer architecture, these processes provide secure, sandboxed environments for different application features while maintaining communication with the main process through IPC channels.
 
+---
+
 ## Renderer Architecture
 
 ### Process Structure
@@ -31,6 +33,8 @@ Renderer Processes/
 - **Node Integration**: Enabled for convenience
 - **Preload Scripts**: Secure API bridges
 - **CSP**: Content Security Policy enforcement
+
+---
 
 ## 1. Main Chat Interface (`src/pages/index.html/js/css`)
 
@@ -91,6 +95,8 @@ let isAIInitialized = false;
 let currentUser = null;
 let chatHistory = [];
 ```
+
+---
 
 ## 2. Settings Panel (`src/pages/settings.html/js/css`)
 
@@ -160,6 +166,8 @@ function validateSettings(settings) {
     return errors;
 }
 ```
+
+---
 
 ## 3. Action Script Manager (`src/pages/actionScript.html/js/css`)
 
@@ -273,6 +281,8 @@ async function runAction(actionData, parameters) {
 - **Execution Monitor**: Progress tracking for running scripts
 - **Template Gallery**: Pre-built action templates
 
+---
+
 ## 4. User Authentication (`src/pages/login.html/js/css`)
 
 ### Purpose
@@ -367,6 +377,8 @@ function updateSystemMetrics() {
 - Usage analytics
 - Backup management
 
+---
+
 ## 6. Notification System (`src/pages/notification.html`)
 
 ### Purpose
@@ -385,6 +397,8 @@ function showNotification(message, type, duration = 5000) {
     }, duration);
 }
 ```
+
+---
 
 ## Common UI Patterns
 
@@ -426,6 +440,8 @@ function validateForm(formElement) {
     return errors;
 }
 ```
+
+---
 
 ## Styling Architecture
 
@@ -481,4 +497,4 @@ function validateForm(formElement) {
 }
 ```
 
-This comprehensive renderer documentation covers all major UI components, their interactions, and the underlying architecture that powers SmartAdmin's user interface layer.
+---

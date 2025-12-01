@@ -1,0 +1,8 @@
+{
+  "label": "User Authentication",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Documentation related to user authentication and authorization processes in SmartAdmin application.",
+  }
+}

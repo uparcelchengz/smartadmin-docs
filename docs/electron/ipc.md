@@ -10,6 +10,8 @@ description: Detailed design of the Electron IPC handlers in SmartAdmin applicat
 
 The `ipc-handlers.js` module serves as the central communication bridge between the main Electron process and renderer processes. It manages all Inter-Process Communication (IPC) channels, handling everything from window management to AI interactions, settings, automation, and user authentication.
 
+---
+
 ## Architecture
 
 ### Core Components
@@ -51,6 +53,8 @@ const context = {
     myScreen
 };
 ```
+
+---
 
 ## IPC Handler Categories
 
@@ -323,6 +327,8 @@ ipcMain.handle('download-dlcode', async (event, dlcode) => {})
 - **Parameters**: `dlcode` (string) - Download code identifier
 - **Features**: Code package management for development
 
+---
+
 ## Error Handling Patterns
 
 ### Standard Error Response
@@ -356,6 +362,8 @@ if (window && !window.isDestroyed()) {
 }
 ```
 
+---
+
 ## Security Considerations
 
 ### Parameter Validation
@@ -372,6 +380,8 @@ if (window && !window.isDestroyed()) {
 - Path traversal prevention
 - File existence validation
 - Permissions checking
+
+---
 
 ## Performance Optimizations
 
@@ -457,4 +467,4 @@ const result = await ipcRenderer.invoke('save-settings', {
 - `fs`: File operations
 - `fs/promises`: Async file operations
 
-This comprehensive IPC handler system provides a secure, efficient, and feature-rich communication layer that enables the SmartAdmin application's distributed architecture while maintaining proper separation between main and renderer processes.
+---
