@@ -1,14 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const BackgroundAnimation = () => {
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
-    const container = document.querySelector('.bg-animation');
-    if (!container) return;
+    // Set client-side flag
+    setIsClient(true);
+  }, []);
 
-    // Clear any existing bubbles
-    container.innerHTML = '';
+  useEffect(() => {
+    // Only run on client-side (browser)
+    if (!isClient || typeof window === 'undefined') return;
+    
+    // Add a small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      const container = document.querySelector('.bg-animation');
+      if (!container) return;
 
-    const bubbleCount = 45; // Optimized count for better performance
+      // Clear any existing bubbles
+      container.innerHTML = '';
+
+      const bubbleCount = 45; // Optimized count for better performance
 
     for (let i = 0; i < bubbleCount; i++) {
       const span = document.createElement('span');
@@ -85,7 +97,24 @@ const BackgroundAnimation = () => {
       
       container.appendChild(microBubble);
     }
-  }, []);
+    }, 100); // 100ms delay
+
+    // Cleanup function for component unmount
+    return () => {
+      clearTimeout(timer);
+      if (isClient && typeof window !== 'undefined') {
+        const container = document.querySelector('.bg-animation');
+        if (container) {
+          container.innerHTML = '';
+        }
+      }
+    };
+  }, [isClient]);
+
+  // Don't render anything on server-side
+  if (!isClient) {
+    return null;
+  }
 
   return <div className="bg-animation" aria-hidden="true" />;
 };
