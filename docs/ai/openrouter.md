@@ -27,5 +27,5 @@ description: Using OpenRouter as an AI provider in SmartAdmin application
     - Choose your desired model from the available or manually type it.
 
 <div style={{textAlign: 'center'}}>
-  <img src="../assets/openrouter.png" alt="OpenRouter Settings" style={{width: '400px', maxWidth: '100%'}} />
+  <img src="https://github.com/uparcelchengz/smartadmin-docs/blob/main/docs/assets/openrouter.png?raw=true" alt="OpenRouter Settings" style={{width: '400px', maxWidth: '100%'}} />
 </div>

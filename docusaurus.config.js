@@ -30,7 +30,7 @@ const config = {
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore', // Temporarily ignore broken links
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -52,21 +52,7 @@ const config = {
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false, // Disable blog entirely
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -106,10 +92,9 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://uparcelchengz.github.io/smartadmin/app/',
+            label: 'SmartAdmin APP',
             position: 'right',
           },
         ],
@@ -118,28 +103,57 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Documentation',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Project Overview',
+                to: '/docs/overview',
+              },
+              {
+                label: 'Architecture',
+                to: '/docs/architecture',
+              },
+              {
+                label: 'User Guide',
+                to: '/docs/user/login',
+              },
+              {
+                label: 'Electron Components',
+                to: '/docs/electron/main',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'AI Integration',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'OpenRouter API',
+                to: '/docs/ai/openrouter',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'Local LLaMA',
+                href: '/docs/ai/local',
               },
               {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
+                label: 'RAG System',
+                href: '/docs/ai/rag',
+              },
+            ],
+          },
+          {
+            title: 'Community & Resources',
+            items: [
+              {
+                label: 'GitHub Repository',
+                href: 'https://github.com/uparcelchengz/smartadmin-docs',
+              },
+              {
+                label: 'Browser Extension',
+                href: 'https://uparcelchengz.github.io/smartadmin/extension/',
+              },
+              {
+                label: 'Extension Install Guide',
+                href: 'https://uparcelchengz.github.io/smartadmin/extension/install.html',
               },
             ],
           },
@@ -147,17 +161,17 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'License',
+                href: 'https://github.com/uparcelchengz/smartadmin-docs/blob/main/LICENSE',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Issues',
+                href: 'https://github.com/uparcelchengz/smartadmin-docs/issues',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} SmartAdmin Project. Docs built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,

@@ -4,6 +4,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import BackgroundAnimation from '@site/src/components/BackgroundAnimation';
 import styles from './index.module.css';
 
 const FeatureList = [
@@ -77,11 +78,11 @@ function HomepageHeader() {
             to="/docs/architecture">
             View Architecture 🏗️
           </Link>
-          <Link
+          {/* <Link
             className="button button--outline button--lg"
             to="/blog">
             Read Blog ✨
-          </Link>
+          </Link> */}
         </div>
       </div>
     </header>
@@ -198,6 +199,7 @@ export default function Home() {
     <Layout
       title={`Welcome to ${siteConfig.title}`}
       description="GenAI Delivery Service Assistant - Transform logistics operations with AI-powered automation">
+      <BackgroundAnimation />
       <HomepageHeader />
       <main>
         <HomepageStats />
