@@ -1,0 +1,9 @@
+{
+  "label": "AI Model Related",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "SmartAdmin employs a flexible AI architecture that supports three different AI providers through the unified AIManager"
+    ,
+  }
+}
