@@ -209,13 +209,6 @@ const config = {
                     filename: 'assets/files/[name].[hash][ext]',
                   },
                 },
-                {
-                  test: /static\/pdf\/.+\.pdf$/,
-                  type: 'asset/resource',
-                  generator: {
-                    emit: false,
-                  },
-                },
               ],
             },
             resolve: {
