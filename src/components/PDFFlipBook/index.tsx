@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import 'react-pdf/dist/esm/Page/TextLayer.css';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import './styles.css';
-
-// Configure PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 interface PDFFlipBookProps {
   file: string;
@@ -13,7 +8,7 @@ interface PDFFlipBookProps {
   width?: number;
 }
 
-const PDFFlipBook: React.FC<PDFFlipBookProps> = ({ 
+const PDFFlipBookContent: React.FC<PDFFlipBookProps> = ({ 
   file, 
   title,
   width = 800 
@@ -22,6 +17,19 @@ const PDFFlipBook: React.FC<PDFFlipBookProps> = ({
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Dynamically import react-pdf only in browser
+  const [Document, setDocument] = useState<any>(null);
+  const [Page, setPage] = useState<any>(null);
+
+  React.useEffect(() => {
+    import('react-pdf').then((module) => {
+      const { Document: Doc, Page: Pg, pdfjs } = module;
+      pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+      setDocument(() => Doc);
+      setPage(() => Pg);
+    });
+  }, []);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
@@ -75,39 +83,48 @@ const PDFFlipBook: React.FC<PDFFlipBookProps> = ({
       </div>
       
       <div className="pdf-viewer">
-        {isLoading && (
+        {!Document || !Page ? (
           <div className="pdf-loading">
             <div className="loading-spinner"></div>
-            <p>Loading PDF...</p>
+            <p>Loading PDF viewer...</p>
           </div>
-        )}
-        
-        {error && (
-          <div className="pdf-error">
-            <p>⚠️ {error}</p>
-          </div>
-        )}
-        
-        {!error && (
-          <Document
-            file={file}
-            onLoadSuccess={onDocumentLoadSuccess}
-            onLoadError={onDocumentLoadError}
-            loading=""
-          >
-            <Page 
-              pageNumber={pageNumber}
-              width={width}
-              className="pdf-page"
-              renderTextLayer={true}
-              renderAnnotationLayer={true}
-              loading={<div className="page-loading">Loading page...</div>}
-            />
-          </Document>
+        ) : (
+          <>
+            {isLoading && (
+              <div className="pdf-loading">
+                <div className="loading-spinner"></div>
+                <p>Loading PDF...</p>
+              </div>
+            )}
+            
+            {error && (
+              <div className="pdf-error">
+                <p>⚠️ {error}</p>
+              </div>
+            )}
+            
+            {!error && (
+              <Document
+                file={file}
+                onLoadSuccess={onDocumentLoadSuccess}
+                onLoadError={onDocumentLoadError}
+                loading=""
+              >
+                <Page 
+                  pageNumber={pageNumber}
+                  width={width}
+                  className="pdf-page"
+                  renderTextLayer={true}
+                  renderAnnotationLayer={true}
+                  loading={<div className="page-loading">Loading page...</div>}
+                />
+              </Document>
+            )}
+          </>
         )}
       </div>
 
-      {!error && numPages > 0 && (
+      {!error && numPages > 0 && Document && Page && (
         <div className="pdf-controls">
           <div className="pdf-nav-buttons">
             <button 
@@ -165,6 +182,14 @@ const PDFFlipBook: React.FC<PDFFlipBookProps> = ({
         </div>
       )}
     </div>
+  );
+};
+
+const PDFFlipBook: React.FC<PDFFlipBookProps> = (props) => {
+  return (
+    <BrowserOnly fallback={<div className="pdf-loading">Loading PDF viewer...</div>}>
+      {() => <PDFFlipBookContent {...props} />}
+    </BrowserOnly>
   );
 };
 
