@@ -50,4 +50,4 @@ By providing data or assistance, you confirm that:
 
 ### How to start?
 
-> To be continued soon!
+Download and follow this SmartAdmin Manual: [SmartAdmin User Manual 📄](../assets/SmartAdmin%20Manual.pdf)
