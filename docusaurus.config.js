@@ -205,14 +205,22 @@ const config = {
                 {
                   test: /\.pdf$/,
                   type: 'asset/resource',
+                  generator: {
+                    filename: 'assets/files/[name].[hash][ext]',
+                  },
+                },
+                {
+                  test: /static\/pdf\/.+\.pdf$/,
+                  type: 'asset/resource',
+                  generator: {
+                    emit: false,
+                  },
                 },
               ],
             },
             resolve: {
               fallback: {
                 canvas: false,
-                fs: false,
-                path: false,
               },
             },
           };
