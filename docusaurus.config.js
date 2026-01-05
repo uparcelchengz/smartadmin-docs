@@ -193,23 +193,6 @@ const config = {
         },
       },
     }),
-
-  plugins: [
-    function (context, options) {
-      return {
-        name: 'custom-webpack-config',
-        configureWebpack(config, isServer) {
-          return {
-            resolve: {
-              fallback: {
-                canvas: false,
-              },
-            },
-          };
-        },
-      };
-    },
-  ],
 };
 
 export default config;
