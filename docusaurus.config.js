@@ -200,6 +200,14 @@ const config = {
         name: 'custom-webpack-config',
         configureWebpack(config, isServer) {
           return {
+            module: {
+              rules: [
+                {
+                  test: /\.pdf$/,
+                  type: 'asset/resource',
+                },
+              ],
+            },
             resolve: {
               fallback: {
                 canvas: false,
