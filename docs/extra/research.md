@@ -4,6 +4,7 @@ title: Be part of the research
 slug: /extra/research
 description: Using Action Scripts with Playwright and API operations in SmartAdmin application
 ---
+import PDFFlipBook from '@site/src/components/PDFFlipBook';
 
 # Your Help is Needed: Be Part of the Research!
 
@@ -51,3 +52,11 @@ By providing data or assistance, you confirm that:
 ### How to start?
 
 > To be continued soon!
+
+
+
+<PDFFlipBook 
+  file="../assets/pdf/SmartAdmin Manual.pdf" 
+  title="SmartAdmin Manual"
+/>
+
