@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 1
 title: Action Scripts and Playwright Integration
 description: Using Action Scripts with Playwright and API operations in SmartAdmin application
 ---
