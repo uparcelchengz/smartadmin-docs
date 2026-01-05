@@ -56,7 +56,7 @@ By providing data or assistance, you confirm that:
 
 
 <PDFFlipBook 
-  file="/smartadmin-docs/pdf/SmartAdmin Manual.pdf"
+  file="https://raw.githubusercontent.com/uparcelchengz/smartadmin-docs/main/static/pdf/SmartAdmin%20Manual.pdf"
   title="SmartAdmin Manual"
 />
 
