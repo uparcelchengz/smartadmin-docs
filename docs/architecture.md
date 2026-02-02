@@ -10,7 +10,7 @@ description: Detailed architecture of SmartAdmin GenAI Delivery Service Assistan
 
 SmartAdmin is an Electron-based desktop application that provides AI-powered administrative automation with chat interface, action script management, and database integration.
 
-High-Level Architecture:
+### High-Level Application Architecture Diagram:
 
 ```mermaid
 graph TB
@@ -55,6 +55,54 @@ graph TB
     ActionHandler --> Playwright
     Main --> PostgreSQL
     Main --> Ably
+```
+
+### High-Level System Architecture Diagram
+```mermaid
+graph TD
+    subgraph User_Side [User & Client]
+        User((Agent / Supervisor))
+        Client[Electron Desktop Client]
+    end
+
+    subgraph Intelligence_Layer [Intelligence & Safety]
+        RAG[FastEmbed + LanceDB\nInstruction RAG]
+        LLM[LLM JSON Action Engine\nAction / Wait / Natural Language]
+        Safety[Safety Layer\nRoles, Whitelist + HITL UI]
+    end
+
+    subgraph Execution_Layer [Automation]
+        Playwright[Playwright Automation\nExecutor]
+        TargetSystem[uParcel Admin System\nBrowser-based Web UI]
+    end
+
+    subgraph Logging [Observability]
+        AuditLog[(Continuous Audit Log\nAll Events & Decisions)]
+    end
+
+    %% Main Flow
+    User -->|Request| Client
+    Client -->|Query| RAG
+    RAG -->|Context + Instructions| LLM
+    LLM -->|JSON Proposal| Safety
+    Safety -->|Approved JSON| Playwright
+    Playwright -->|Browser Actions| TargetSystem
+
+    %% Audit Log Connections
+    Client -.->|Session Start/End| AuditLog
+    RAG -.->|Retrieval Results| AuditLog
+    LLM -.->|Prompts & Responses| AuditLog
+    Safety -.->|Approvals/Rejections| AuditLog
+    Playwright -.->|Success/Failure| AuditLog
+
+    %% Styling
+    style User fill:#f9f,stroke:#333,stroke-width:2px
+    style Client fill:#e1f5fe,stroke:#01579b
+    style RAG fill:#fff9c4,stroke:#fbc02d
+    style LLM fill:#fff9c4,stroke:#fbc02d
+    style Safety fill:#ffccbc,stroke:#bf360c
+    style Playwright fill:#c8e6c9,stroke:#2e7d32
+    style AuditLog fill:#e0e0e0,stroke:#616161,stroke-dasharray: 5 5
 ```
 
 ## 2. Core Components
